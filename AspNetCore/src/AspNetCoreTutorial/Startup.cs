@@ -12,6 +12,7 @@ using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
 using Microsoft.Framework.Runtime;
+using AspNetCoreTutorial.Model;
 
 namespace AspNetCoreTutorial
 {
@@ -21,7 +22,8 @@ namespace AspNetCoreTutorial
         {
             // Setup configuration sources.
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
+                .AddJsonFile("config.json").
+                AddJsonFile("keyvalues.json")
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -37,6 +39,8 @@ namespace AspNetCoreTutorial
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MyOptions>(Configuration);
+            var cor = Configuration.Get("cor");
             // Add Application Insights data collection services to the services container.
             services.AddApplicationInsightsTelemetry(Configuration);
 
