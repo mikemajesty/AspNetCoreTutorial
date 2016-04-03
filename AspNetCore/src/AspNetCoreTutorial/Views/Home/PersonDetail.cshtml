@@ -1,0 +1,29 @@
+﻿@model AspNetCoreTutorial.Model.Person
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+
+@{
+    ViewBag.Title = "Person Detail";
+    Layout = "_layout";
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="ValidationSummary.All"></div>
+    <h2 class="well">Register Person</h2>
+    <label asp-for="FirstName">Fist Name:</label>
+    <input asp-for="FirstName" class="form-control" placeholder="Type your @nameof(Model.FirstName)" />
+    <span class="text-danger" asp-validation-for="FirstName"></span><br>
+
+    <label asp-for="LastName">Last Name:</label>
+    <input asp-for="LastName" class="form-control" placeholder="Type your @nameof(Model.LastName)" />
+    <span class="text-danger" asp-validation-for="LastName"></span><br>
+
+    <label asp-for="Birthday">Bithday:</label>
+    <input asp-for="Birthday" class="form-control" placeholder="Type your @nameof(Model.Birthday)" />
+    <span class="text-danger" asp-validation-for="Birthday"></span><br>
+    <br /><br />
+    <button type="submit" class="btn-success btn-block btn-lg"><span class="fa fa-check"></span>Save</button>
+
+
+}
