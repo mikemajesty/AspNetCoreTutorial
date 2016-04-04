@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Mvc;
 using AspNetCoreTutorial.Model;
-using Microsoft.Framework.Configuration;
 using Microsoft.Framework.OptionsModel;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
+using System.Linq;
 namespace AspNetCoreTutorial.Controllers
 {
     public class HomeController : Controller
     {
+        private ProductContext dataContext = new ProductContext();
 
         public HomeController(IOptions<MyOptions> options )
         {
@@ -29,7 +23,7 @@ namespace AspNetCoreTutorial.Controllers
         [HttpPost]
         public IActionResult PersonDetail(Person person)
         {
-            return View(person);
+            return View(dataContext.Product);
         }
       
     }
