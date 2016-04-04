@@ -2,6 +2,8 @@
 using AspNetCoreTutorial.Model;
 using Microsoft.Framework.OptionsModel;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace AspNetCoreTutorial.Controllers
 {
     public class HomeController : Controller
@@ -17,13 +19,14 @@ namespace AspNetCoreTutorial.Controllers
             ViewData["Message"] = "I'm a Home Controller";
             return View();
         }
-        [HttpGet]
+        [HttpGet("/ical")]
+        [Produces("text/calendar")]
         public IActionResult PersonDetail() => View();
 
         [HttpPost]
         public IActionResult PersonDetail(Person person)
         {
-            return View(dataContext.Product);
+            return  View(dataContext.Product);
         }
       
     }
